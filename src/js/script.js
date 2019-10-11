@@ -204,32 +204,17 @@
           const imagesElem = thisProduct.imageWrapper.querySelectorAll('.' + paramId + '-' + optionId);
           console.log('imagesElem:', imagesElem);
 
-          const paramLabel = document.querySelectorAll(param.label);
-          console.log('paramLabel:', paramLabel);
-
-          const optionLabel = document.querySelectorAll(option.label);
-          console.log('optionLabel:', optionLabel);
-
           for (let image of imagesElem) {
             if (optionSelected) {
-              for (let paramElem in paramLabel) {
-                if (paramElem && optionLabel) {
-                  image.classList.add('active');
-                  console.log('dodana');
-                }
-              }
+              image.classList.add('active');
+              console.log('dodana');
             } else {
               image.classList.remove('active');
               console.log('usunięta');
             }
           }
         }
-
-        /* END LOOP: for each optionId in param.options */
       }
-      /* END LOOP: for each paramId in thisProduct.data.params */
-
-      /* set the contents of thisProduct.priceElem to be the value of variable price */
     }
   }
 
