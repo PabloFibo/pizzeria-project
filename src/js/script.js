@@ -95,6 +95,7 @@
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
     }
 
     initAccordion() {
@@ -180,7 +181,7 @@
 
           /* save the element in param.options with key optionId as const option */
           const option = param.options[optionId];
-
+          console.log('option:', option);
           /* START IF: if option is selected and option is not default */
           const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionId) > -1;
           console.log('optionSelected:', optionSelected);
@@ -197,14 +198,38 @@
             /* deduct price of option from price */
             price = price - option.price;
           }
+          thisProduct.priceElem.innerHTML = price;
+
           /* END ELSE IF: if option is not selected and option is default */
+          const imagesElem = thisProduct.imageWrapper.querySelectorAll('.' + paramId + '-' + optionId);
+          console.log('imagesElem:', imagesElem);
+
+          const paramLabel = document.querySelectorAll(param.label);
+          console.log('paramLabel:', paramLabel);
+
+          const optionLabel = document.querySelectorAll(option.label);
+          console.log('optionLabel:', optionLabel);
+
+          for (let image of imagesElem) {
+            if (optionSelected) {
+              for (let paramElem in paramLabel) {
+                if (paramElem && optionLabel) {
+                  image.classList.add('active');
+                  console.log('dodana');
+                }
+              }
+            } else {
+              image.classList.remove('active');
+              console.log('usunięta');
+            }
+          }
         }
+
         /* END LOOP: for each optionId in param.options */
       }
       /* END LOOP: for each paramId in thisProduct.data.params */
 
       /* set the contents of thisProduct.priceElem to be the value of variable price */
-      thisProduct.priceElem.innerHTML = price;
     }
   }
 
