@@ -10,10 +10,7 @@ class Booking {
     const thisBooking = this;
 
     thisBooking.render(bookingWidget);
-    console.log('render', thisBooking.render());
-
     thisBooking.initWidgets();
-    console.log('widgets', thisBooking.initWidgets());
   }
 
   render(element) {
@@ -30,8 +27,8 @@ class Booking {
   initWidgets() {
     const thisBooking = this;
 
-    thisBooking.peopleAmount = new AmountWidget(thisBooking.peopleAmount);
-    thisBooking.hoursAmount = new AmountWidget(thisBooking.hoursAmount);
+    thisBooking.peopleAmount = new AmountWidget(thisBooking.dom.peopleAmount);
+    thisBooking.hoursAmount = new AmountWidget(thisBooking.dom.hoursAmount);
   }
 }
 export default Booking;
