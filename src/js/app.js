@@ -1,9 +1,15 @@
-import {settings, classNames, select, templates} from './settings.js';
+import {
+  settings,
+  classNames,
+  select,
+  templates
+} from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
+import Booking from './components/Booking.js';
 
 const app = {
-  initPages : function(){
+  initPages: function() {
     const thisApp = this;
 
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
@@ -13,8 +19,8 @@ const app = {
 
     let pageMatchingHash = thisApp.pages[0].id;
 
-    for(let page of thisApp.pages){
-      if(page.id == idFromHash){
+    for (let page of thisApp.pages) {
+      if (page.id == idFromHash) {
         pageMatchingHash = page.id;
         break;
       }
@@ -22,13 +28,13 @@ const app = {
 
     thisApp.activatePage(pageMatchingHash);
 
-    for(let link of thisApp.navLinks){
-      link.addEventListener('click', function(event){
+    for (let link of thisApp.navLinks) {
+      link.addEventListener('click', function(event) {
         const clickedElement = this;
         event.preventDefault();
 
         /* get page id from href attribute */
-        const id = clickedElement.getAttribute('href'). replace('#', '');
+        const id = clickedElement.getAttribute('href').replace('#', '');
 
         /* run thisApp.activatePage with that id */
         thisApp.activatePage(id);
@@ -39,18 +45,18 @@ const app = {
     }
   },
 
-  activatePage: function(pageId){
+  activatePage: function(pageId) {
     const thisApp = this;
 
     /*add class 'active' to matching pages, remove from non-matching */
-    for(let page of thisApp.pages){
+    for (let page of thisApp.pages) {
       page.classList.toggle(
         classNames.pages.active,
         page.id == pageId
       );
     }
     /*add class 'active' to matchng links, remove form non-matching */
-    for(let link of thisApp.navLinks){
+    for (let link of thisApp.navLinks) {
       link.classList.toggle(
         classNames.nav.active,
         link.getAttribute('href') == '#' + pageId
@@ -100,9 +106,18 @@ const app = {
 
     thisApp.productList = document.querySelector(select.containerOf.menu);
 
-    thisApp.productList.addEventListener('add-to-cart', function(event){
+    thisApp.productList.addEventListener('add-to-cart', function(event) {
       app.cart.add(event.detail.product);
     });
+  },
+
+  initBooking: function() {
+    const thisApp = this;
+
+    const bookingWidget = document.querySelector(select.containerOf.booking);
+    console.log('bookingWidget', bookingWidget);
+
+    thisApp.booking = new Booking(bookingWidget);
   },
 
   init: function() {
@@ -120,12 +135,7 @@ const app = {
     thisApp.initBooking();
   },
 
-  initBooking: function(){
-    const thisApp = this;
 
-    thisApp.bookingWidget = document.querySelector(select.containerOf.booking);
-
-  }
 };
 
 app.init();
