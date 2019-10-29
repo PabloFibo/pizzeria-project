@@ -36,6 +36,7 @@
         "rangeslider": "^1.0.0"
     },
     "devDependencies": {
+        "@ionic/app-scripts": "^3.2.4",
         "autoprefixer-cli": "^1.0.0",
         "browser-sync": "^2.26.3",
         "copyfiles": "^2.1.0",

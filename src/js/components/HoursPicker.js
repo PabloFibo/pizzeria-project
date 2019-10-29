@@ -7,7 +7,7 @@ import {
 } from '../utils.js';
 import BaseWidget from './BaseWidget.js';
 
-class HoursPicker extends BaseWidget {
+class HourPicker extends BaseWidget {
   constructor(wrapper) {
     super(wrapper, settings.hours.open);
     const thisWidget = this;
@@ -43,4 +43,4 @@ class HoursPicker extends BaseWidget {
   }
 }
 
-export default HoursPicker;
+export default HourPicker;
