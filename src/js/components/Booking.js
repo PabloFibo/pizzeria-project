@@ -51,10 +51,10 @@ class Booking {
     console.log('urls', urls);
 
     Promise.all([
-      fetch(urls.booking),
-      fetch(urls.eventsCurrent),
-      fetch(urls.eventsRepeat),
-    ])
+        fetch(urls.booking),
+        fetch(urls.eventsCurrent),
+        fetch(urls.eventsRepeat),
+      ])
       .then(function(allResponses) {
         const bookingsResponse = allResponses[0];
         const eventsCurrentResponse = allResponses[1];
@@ -114,7 +114,6 @@ class Booking {
       }
 
       thisBooking.booked[date][hourBlock].push(table);
-
     }
   }
 
@@ -123,7 +122,7 @@ class Booking {
 
     thisBooking.date = thisBooking.datePicker.value;
     thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
-    console.log('value', thisBooking.hour);
+    console.log('hour', thisBooking.hour);
 
     let allAvailable = false;
 
@@ -146,7 +145,7 @@ class Booking {
       ) {
         table.classList.add(classNames.booking.tableBooked);
       } else {
-        table.classList.remove(classNames.booked.tableBooked);
+        table.classList.remove(classNames.booking.tableBooked);
       }
     }
   }
@@ -176,7 +175,7 @@ class Booking {
     thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
     thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker);
 
-    thisBooking.dom.wrapper.addEventListener('updated', function(){
+    thisBooking.dom.wrapper.addEventListener('updated', function() {
       thisBooking.updateDOM();
     });
   }
