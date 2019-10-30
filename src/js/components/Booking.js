@@ -51,10 +51,10 @@ class Booking {
     console.log('urls', urls);
 
     Promise.all([
-        fetch(urls.booking),
-        fetch(urls.eventsCurrent),
-        fetch(urls.eventsRepeat),
-      ])
+      fetch(urls.booking),
+      fetch(urls.eventsCurrent),
+      fetch(urls.eventsRepeat),
+    ])
       .then(function(allResponses) {
         const bookingsResponse = allResponses[0];
         const eventsCurrentResponse = allResponses[1];
@@ -122,7 +122,6 @@ class Booking {
 
     thisBooking.date = thisBooking.datePicker.value;
     thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
-    console.log('hour', thisBooking.hour);
 
     let allAvailable = false;
 
@@ -151,7 +150,6 @@ class Booking {
   }
 
 
-
   render(element) {
     const thisBooking = this;
     const generatedHTML = templates.bookingWidget();
@@ -164,7 +162,6 @@ class Booking {
     thisBooking.dom.datePicker = document.querySelector(select.widgets.datePicker.wrapper);
     thisBooking.dom.hourPicker = document.querySelector(select.widgets.hourPicker.wrapper);
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
-
   }
 
   initWidgets() {
