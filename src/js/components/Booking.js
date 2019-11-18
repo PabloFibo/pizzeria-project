@@ -18,6 +18,7 @@ class Booking {
     thisBooking.render(bookingWidget);
     thisBooking.initWidgets();
     thisBooking.getData();
+    thisBooking.getTable();
   }
 
   getData() {
@@ -41,7 +42,6 @@ class Booking {
         endDateParam,
       ]
     };
-    console.log('getData params', params);
 
     const urls = {
       booking: settings.db.url + '/' + settings.db.booking + '?' + params.booking.join('&'),
@@ -108,7 +108,6 @@ class Booking {
     const startHour = utils.hourToNumber(hour);
 
     for (let hourBlock = startHour; hourBlock < startHour + duration; hourBlock += 0.5) {
-      //console.log('loop', hourBlock);
       if (typeof thisBooking.booked[date][hourBlock] == 'undefined') {
         thisBooking.booked[date][hourBlock] = [];
       }
@@ -149,6 +148,18 @@ class Booking {
     }
   }
 
+  getTable() { // funkcja pozwala zaznaczyć i odznaczyć rezerwacje stolika
+    const thisBooking = this;
+
+    for (let table of thisBooking.dom.tables) {
+      table.addEventListener('click', function() {
+        event.preventDefault();
+        table.classList.toggle(classNames.booking.tableBooked);
+        console.log(table);
+      });
+    }
+  }
+
 
   render(element) {
     const thisBooking = this;
@@ -161,7 +172,8 @@ class Booking {
     thisBooking.dom.hoursAmount = document.querySelector(select.booking.hoursAmount);
     thisBooking.dom.datePicker = document.querySelector(select.widgets.datePicker.wrapper);
     thisBooking.dom.hourPicker = document.querySelector(select.widgets.hourPicker.wrapper);
-    thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
+    thisBooking.dom.tables = element.querySelectorAll(select.booking.tables);
+    console.log(thisBooking.dom.tables);
   }
 
   initWidgets() {
@@ -175,6 +187,7 @@ class Booking {
     thisBooking.dom.wrapper.addEventListener('updated', function() {
       thisBooking.updateDOM();
     });
+
   }
 }
 export default Booking;
