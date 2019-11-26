@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Pizzeria</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Lato:400,300i,700%7COswald:300,500,700&amp;subset=latin-ext" rel="stylesheet">
   <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
@@ -21,6 +22,7 @@
           <h2 class="logo__subtitle">the best homemade Italian food</h2>
         </div>
         <div class="main-nav">
+         <a href="#main-page">Home</a>
          <a href="#order">Order</a>
          <a href="#booking">Booking</a>
        </div>
@@ -62,6 +64,9 @@
   </header>
 
   <div id="pages">
+    <section id="main-page">
+      <div class="front-page container"></div>
+    </section>
     <section id="order">
       <div id="product-list" class="product-list container"></div>
     </section>
@@ -69,6 +74,62 @@
       <div class="booking-wrapper container"></div>
     </section>
   </div>
+
+  <script id="template-mainPage-widget" type="text/x-handlebars-template">
+    <div class="container">
+      <div class="main-widget">
+        <div class="row" name="navi-overlap">
+          <div class="col">
+            <h3 class="order-overlap">Order online</h3>
+          </div>
+          <div class="col">
+            <h3 class="booking-overlap">Book a table</h3>
+          </div>
+        </div>
+        <div class="row" name="opening-hours">
+          <div class="col">
+            <h2 class="opening-title">Opening hours</h2>
+            <p class="open-hours">Tue-Sun, 12PM-12AM</p>
+          </div>
+        </div>
+        <div class="carousel-main">
+          <div class="row">
+            <div class="col" name="carousel-slides">
+              <article class="element-slider">
+                <h3 class="opinion">Amazing service</h3>
+                <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <article class="element-slider">
+                <h3 class="opinion">Delicious food</h3>
+                <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <article class="element-slider">
+                <h3 class="opinion">My favourite restaurant</h3>
+                <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <ul class="slider-dots">
+                <li class="dots-elem active"><button class="dots-button" type="button">1</button></li>
+                <li class="dots-elem active"><button class="dots-button" type="button">2</button></li>
+                <li class="dots-elem active"><button class="dots-button" type="button">3</button></li>
+            </ul>
+            </div>
+          </div>
+        </div>
+        <article class="images">
+          <div class="row">
+            <div class="col" name="img1"></div>
+            <div class="col" name="img2"></div>
+            <div class="col" name="img3"></div>
+          </div>
+          <div class="row">
+            <div class="col" name="img4"></div>
+            <div class="col" name="img5"></div>
+            <div class="col" name="img6"></div>
+          </div>
+          <div class="row">
+            <p class="insta-link">View more on Instagram</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </script>
 
   <script id="template-booking-widget" type="text/x-handlebars-template">
     <div class="booking-widget">

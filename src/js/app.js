@@ -7,6 +7,7 @@ import {
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
+import MainPage from './components/MainPage.js';
 
 const app = {
   initPages: function() {
@@ -112,6 +113,13 @@ const app = {
     thisApp.booking = new Booking(bookingWidget);
   },
 
+  initMainPage: function(){
+    const thisApp = this;
+    const mainWidget = document.querySelector(select.containerOf.homeSite);
+
+    thisApp.mainPage = new MainPage(mainWidget);
+  },
+
   init: function() {
     const thisApp = this;
     console.log('*** App starting ***');
@@ -122,7 +130,7 @@ const app = {
 
     thisApp.initPages();
     thisApp.initData();
-    //thisApp.initMenu();
+    thisApp.initMainPage();
     thisApp.initCart();
     thisApp.initBooking();
   },
