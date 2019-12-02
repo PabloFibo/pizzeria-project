@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Pizzeria</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css?family=Lato:400,300i,700%7COswald:300,500,700&amp;subset=latin-ext" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,300i,700%7COswald:300,500,700&amp%Cormorant+Garamond:700i;subset=latin-ext" rel="stylesheet">
   <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="vendor/range-slider.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
   <header class="header">
@@ -22,10 +24,10 @@
           <h2 class="logo__subtitle">the best homemade Italian food</h2>
         </div>
         <div class="main-nav">
-         <a href="#main-page">Home</a>
-         <a href="#order">Order</a>
-         <a href="#booking">Booking</a>
-       </div>
+          <a href="#main-page">Home</a>
+          <a href="#order">Order</a>
+          <a href="#booking">Booking</a>
+        </div>
         <div id="cart" class="cart">
           <div class="cart__summary">
             <span class="cart__total-number">5</span>
@@ -78,53 +80,87 @@
   <script id="template-mainPage-widget" type="text/x-handlebars-template">
     <div class="container">
       <div class="main-widget">
-        <div class="row" name="navi-overlap">
+        <div id="navi-widget" class="row navi">
           <div class="col">
-            <h3 class="order-overlap">Order online</h3>
+            <a class="order-overlap" type="btn" href="#order">Order online</a>
           </div>
           <div class="col">
-            <h3 class="booking-overlap">Book a table</h3>
-          </div>
-        </div>
-        <div class="row" name="opening-hours">
-          <div class="col">
-            <h2 class="opening-title">Opening hours</h2>
-            <p class="open-hours">Tue-Sun, 12PM-12AM</p>
+            <a class="booking-overlap" type="btn" href="#booking">Book a table</a>
           </div>
         </div>
-        <div class="carousel-main">
+        <div id="opening-info" class="row">
+          <div class="col">
+            <h2 class="opening-title">Opening hours:</h2>
+            <p class="open-hours">Tue-Sun, 12PM - 12AM</p>
+          </div>
+        </div>
+        <div class="d-inline carousel-main">
           <div class="row">
-            <div class="col" name="carousel-slides">
+            <div class="col-4 ">
+              <div class="pic-carousel"></div>
+            </div>
+            <div class="col-8 my-5 pt-4" id="carousel-slides">
               <article class="element-slider">
-                <h3 class="opinion">Amazing service</h3>
-                <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <h3 class="opinion">Amazing service!</h3>
+                <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.At vero eos et accusamus et iusto odio dignissimos ducimus.</p>
+                <p class="person">- Jan Kowalski</p>
               <article class="element-slider">
                 <h3 class="opinion">Delicious food</h3>
                 <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p class="person">- Zdzisław Kowalski</p>
               <article class="element-slider">
                 <h3 class="opinion">My favourite restaurant</h3>
                 <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-              <ul class="slider-dots">
-                <li class="dots-elem active"><button class="dots-button" type="button">1</button></li>
-                <li class="dots-elem active"><button class="dots-button" type="button">2</button></li>
-                <li class="dots-elem active"><button class="dots-button" type="button">3</button></li>
-            </ul>
+                <p class="person">- Mateusz Kowalski</p>
             </div>
+          </div>
+          <div class="row">
+            <div class="col">
+            <ul class="slider-dots">
+              <a class="dots-button"><i class="fas fa-circle"></i></a>
+              <a class="dots-button dots-active"><i class="fas fa-circle"></i></a>
+              <a class="dots-button"><i class="fas fa-circle"></i></a>
+            </ul>
+          </div>
           </div>
         </div>
         <article class="images">
-          <div class="row">
-            <div class="col" name="img1"></div>
-            <div class="col" name="img2"></div>
-            <div class="col" name="img3"></div>
+          <div class="row album-top">
+            <div class="col-4 img1">
+              <a class="heart" href="#"><i class="fas fa-heart"></i></a>
+              <a class="share-icon" href="#"><i class="fas fa-share-alt"></i></a>
+              <img class="pic-album-up" src="/images/pizza-4.jpg">
+            </div>
+            <div class="col-4 img2">
+              <a class="heart" href="#"><i class="fas fa-heart"></i></a>
+              <a class="share-icon" href="#"><i class="fas fa-share-alt"></i></a>
+              <img class="pic-album-up" src="/images/pizza-5.jpg">
+            </div>
+            <div class="col-4 img3">
+              <a class="heart" href="#"><i class="fas fa-heart"></i></a>
+              <a class="share-icon" href="#"><i class="fas fa-share-alt"></i></a>
+              <img class="pic-album-up" src="/images/pizza-6.jpg">
+            </div>
+          </div>
+          <div class="row album-bottom">
+            <div class="col-4 img4">
+              <a class="heart" href="#"><i class="fas fa-heart"></i></a>
+              <a class="share-icon" href="#"><i class="fas fa-share-alt"></i></a>
+              <img class="pic-album-bottom" src="/images/pizza-7.jpg">
+            </div>
+            <div class="col-4 img5">
+              <a class="heart" href="#"><i class="fas fa-heart"></i></a>
+              <a class="share-icon" href="#"><i class="fas fa-share-alt"></i></a>
+              <img class="pic-album-bottom" src="/images/pizza-8.jpg">
+            </div>
+            <div class="col-4 img6">
+              <a class="heart" href="#"><i class="fas fa-heart"></i></a>
+              <a class="share-icon" href="#"><i class="fas fa-share-alt"></i></a>
+              <img class="pic-album-bottom" src="/images/pizza-9.jpg">
+            </div>
           </div>
           <div class="row">
-            <div class="col" name="img4"></div>
-            <div class="col" name="img5"></div>
-            <div class="col" name="img6"></div>
-          </div>
-          <div class="row">
-            <p class="insta-link">View more on Instagram</p>
+            <a class="insta-link" href="#">View more on Instagram</a>
           </div>
         </article>
       </div>
@@ -309,4 +345,5 @@
   <script src="vendor/range-slider.min.js" type="module"></script>
   <script src="js/app.js" type="module"></script>
 </body>
+
 </html>

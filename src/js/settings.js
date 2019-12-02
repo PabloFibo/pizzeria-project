@@ -13,6 +13,8 @@ export const select = {
     pages: '#pages',
     booking: '.booking-wrapper',
     homeSite: '.front-page',
+    carousel: '#carousel-slides',
+    naviHome: '.homeBtn',
   },
   all: {
     menuProducts: '#product-list > .product',
@@ -72,7 +74,13 @@ export const select = {
   },
   nav: {
     links: '.main-nav a',
+    home: '#navi-widget a',
+    //booking: '.#navi-widget .booking-overlap',
   },
+  slider: {
+    sliderElem: '.element-slider',
+  }
+
 };
 
 export const classNames = {
@@ -94,6 +102,9 @@ export const classNames = {
   pages: {
     active: 'active',
   },
+  slider: {
+    sliderActive: 'slider-active',
+  }
 };
 
 export const settings = {
