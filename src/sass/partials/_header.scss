@@ -6,7 +6,6 @@
   &__wrapper {
     position: relative;
   }
-
 }
 
 .logo {
@@ -14,7 +13,7 @@
   line-height: 1;
 
   &__title {
-    margin: 0 0 $base-size 0;
+    margin: 0 0 $base-size;
     font-size: ($base-size * 4);
     font-family: $font-header;
     font-weight: $font-light;
@@ -23,7 +22,6 @@
     span {
       font-weight: $font-bold;
     }
-
   }
 
   &__subtitle {
@@ -32,13 +30,18 @@
     font-weight: $font-light;
     font-style: italic;
   }
-
 }
 
 .main-nav {
   position: absolute;
   @include flex(row, flex-start, flex-start);
   bottom: ($base-size * -8);
+
+  &.unactive {
+    pointer-events: none;
+    background: transparent;
+    pointer-events: none;
+  }
 
   a {
     @extend .h2;
@@ -55,6 +58,6 @@
       background: lighten($color-dark, 75%);
     }
 
-  }
 
+  }
 }

@@ -9,6 +9,7 @@
 #navi-widget {
   margin-top: -30px;
   font-family: $font-header;
+  position: relative;
 }
 
 .order-overlap {
@@ -28,6 +29,41 @@
   text-transform: uppercase;
   border-radius: 4px;
   line-height: 1.6;
+  position: relative;
+}
+
+.order-online {
+  margin-bottom: 5px;
+}
+
+.order-discr {
+  position: absolute;
+  display: flex;
+  justify-content: start;
+  align-self: flex-end;
+  color: white;
+  margin-top: 35px;
+  font-size: 12px;
+  font-weight: 350;
+  text-transform: none;
+  opacity: 0;
+}
+
+.order-overlap:hover {
+  transition: transform 1s;
+  text-decoration: none;
+  color: white;
+
+  .order-online {
+    transition: transform 1s;
+    transform: translate(0px, -15px);
+  }
+
+  .order-discr {
+    transition: transform 1s;
+    transform: translate(0px, -25px);
+    opacity: 1;
+  }
 }
 
 .booking-overlap {
@@ -47,6 +83,42 @@
   text-transform: uppercase;
   border-radius: 4px;
   line-height: 1.6;
+  position: relative;
+}
+
+.booking-discr {
+  position: absolute;
+  display: flex;
+  justify-content: start;
+  align-self: flex-end;
+  color: white;
+  margin-top: 35px;
+  font-size: 12px;
+  font-weight: 350;
+  text-transform: none;
+  text-decoration: none;
+  opacity: 0;
+}
+
+.booking-online {
+  margin-bottom: 5px;
+}
+
+.booking-overlap:hover {
+  transition: transform 1s;
+  text-decoration: none;
+  color: white;
+
+  .booking-online {
+    transition: transform 1s;
+    transform: translate(0px, -15px);
+  }
+
+  .booking-discr {
+    transition: transform 1s;
+    transform: translate(0px, -25px);
+    opacity: 1;
+  }
 }
 
 #opening-info {
@@ -55,6 +127,7 @@
   margin: 10px 18px;
   background-color: $color-main;
   border-radius: 4px;
+  position: relative;
 }
 
 .opening-title {
@@ -86,13 +159,11 @@
   position: absolute;
   display: block;
   opacity: 0;
-  z-index: 0;
   transition: 0.5s all;
 }
 
 #carousel-slides .slider-active {
   opacity: 1;
-  z-index: 1;
   margin-top: 20px;
   margin-left: 20px;
 }
@@ -123,10 +194,9 @@
   margin-top: 20px;
   margin-right: 40px;
   font-size: 9px;
-  z-index: 2;
 }
 
-.slider-dots .dots-active{
+.slider-dots .dots-active {
   opacity: 1;
 }
 
@@ -161,40 +231,77 @@
   border-radius: 4px;
 }
 
-.album-top .fa-share-alt{
+.album-top .fa-share-alt {
   position: absolute;
   color: white;
   margin-top: 115px;
   margin-left: 85px;
   font-size: 18px;
+  opacity: 0;
 }
 
-.album-bottom .fa-share-alt{
+.album-bottom .fa-share-alt {
   position: absolute;
   color: white;
   margin-top: 85px;
   margin-left: 85px;
   font-size: 18px;
+  opacity: 0;
 }
 
-.album-top .fa-heart{
+.album-top .fa-heart {
   position: absolute;
-  color: red;
+  color: white;
   margin-top: 115px;
   margin-left: 55px;
   font-size: 18px;
+  opacity: 0;
 }
 
-.album-bottom .fa-heart{
+.album-bottom .fa-heart {
   position: absolute;
-  color: red;
+  color: white;
   margin-top: 85px;
   margin-left: 55px;
   font-size: 18px;
+  opacity: 0;
+}
+
+.img-up:hover {
+  transition: transform 1s;
+
+  .heart i {
+    opacity: 1;
+  }
+
+  .share-icon i {
+    opacity: 1;
+  }
+}
+
+.img-bottom:hover {
+  transition: transform 1s;
+
+  .heart i {
+    opacity: 1;
+  }
+
+  .share-icon i {
+    opacity: 1;
+  }
+}
+
+.heart i:hover {
+  color: $color-main;
+  transition: color 1s;
+}
+
+.share-icon i:hover {
+  color: $color-main;
+  transition: color 1s;
 }
 
 .img1 {
-  position: relative;
   margin-left: 20px;
 }
 
@@ -202,23 +309,23 @@
   margin-left: -20px;
 }
 
-.img3{
+.img3 {
   margin-left: -20px;
 }
 
-.img4{
+.img4 {
   margin-left: 20px;
 }
 
-.img5{
+.img5 {
   margin-left: -20px;
 }
 
-.img6{
+.img6 {
   margin-left: -20px;
 }
 
-.insta-link{
+.insta-link {
   margin-top: 20px;
   margin-left: 35px;
   font-size: 11px;

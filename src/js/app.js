@@ -16,7 +16,7 @@ const app = {
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
     thisApp.homeBtn = document.querySelectorAll(select.nav.home);
-    console.log(thisApp.homeBtn);
+    thisApp.mainNav = document.querySelector(select.containerOf.navContainer);
 
     const idFromHash = window.location.hash.replace('#/', '');
 
@@ -41,22 +41,42 @@ const app = {
 
         /* run thisApp.activatePage with that id */
         thisApp.activatePage(id);
+        //let blockedNav = thisApp.navLinks;
+
+        /*link.addEventListener('click', function(){  //usuwa zaznaczony stolik po zmianie godz.
+          if(id != select.nav.main){
+            thisApp.mainNav.classList.remove(classNames.nav.unactive);
+          }
+        });
+
+        link.addEventListener('click', function(){  //usuwa zaznaczony stolik po zmianie godz.
+          if (id == select.nav.main){
+            thisApp.mainNav.classList.add(classNames.nav.unactive);
+          }
+        });*/
+
+        /*if (id != select.nav.main) {
+          thisApp.mainNav.classList.remove(classNames.nav.unactive);
+        }
+        if (id == select.nav.main) {
+          thisApp.mainNav.classList.add(classNames.nav.unactive);
+        }*/
+
 
         /* change URL hash */
         window.location.hash = '#/' + id;
       });
     }
 
+
+
     for (let home of thisApp.homeBtn) {
       home.addEventListener('click', function(event) {
         const clickedElement = this;
         event.preventDefault();
-        console.log(home);
-        console.log(clickedElement);
 
         /* get page id from href attribute */
         const id = clickedElement.getAttribute('href').replace('#', '');
-        console.log(id);
         /* run thisApp.activatePage with that id */
         thisApp.activatePage(id);
 
@@ -149,11 +169,11 @@ const app = {
     console.log('settings:', settings);
     console.log('templates:', templates);
 
-    thisApp.initPages();
     thisApp.initData();
     thisApp.initMainPage();
     thisApp.initCart();
     thisApp.initBooking();
+    thisApp.initPages();
   },
 
 

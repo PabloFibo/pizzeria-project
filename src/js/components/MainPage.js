@@ -15,25 +15,45 @@ class MainPage {
 
     thisMainPage.render(element);
     thisMainPage.slider();
+  //  thisMainPage.naviMainDisabled();
   }
 
 
   slider() {
     const thisMainPage = this;
     thisMainPage.slideIndex = 0;
+    thisMainPage.dotsIndex = 0;
 
     setInterval(function() {
-      for (let slide of thisMainPage.dom.sliderElem) {
+      for (let slide of thisMainPage.dom.sliderElem) { //usuwa klase active z slajdów
         slide.classList.remove(classNames.slider.sliderActive);
       }
 
       thisMainPage.slideIndex += 1;
-      console.log(thisMainPage.slideIndex);
-      for(let slide of thisMainPage.dom.sliderElem){
-        if (thisMainPage.slideIndex > thisMainPage.dom.sliderElem.length - 1) {
+      let slides = thisMainPage.dom.sliderElem;
+
+      for (let i = 0; i < slides.length; i++) {
+        if (thisMainPage.slideIndex > slides.length - 1) {
           thisMainPage.slideIndex = 0;
         }
-        slide.classList.add(classNames.slider.sliderActive);
+        slides[thisMainPage.slideIndex].classList.add(
+          classNames.slider.sliderActive);
+      }
+
+      for (let dot of thisMainPage.dom.dots) { //usuwa klase active z dots
+        dot.classList.remove(classNames.slider.dotsActive);
+      }
+
+      thisMainPage.dotsIndex += 1;
+      let dots = thisMainPage.dom.dots;
+
+      for (let i = 0; i < dots.length; i++) {
+        if (thisMainPage.dotsIndex > dots.length - 1) {
+          thisMainPage.dotsIndex = 0;
+
+        }
+        dots[thisMainPage.dotsIndex].classList.add(
+          classNames.slider.dotsActive);
       }
     }, 3000);
   }
@@ -47,9 +67,8 @@ class MainPage {
     thisMainPage.dom.wrapper.innerHTML = generatedHTML;
     thisMainPage.dom.carousel = document.querySelectorAll(select.containerOf.carousel);
     thisMainPage.dom.sliderElem = document.querySelectorAll(select.slider.sliderElem);
-    thisMainPage.dom.orderBtn = document.querySelector(select.nav.order);
-    thisMainPage.dom.bookingBtn = document.querySelector(select.nav.booking);
-    console.log(thisMainPage.dom.sliderElem);
+    thisMainPage.dom.dots = document.querySelectorAll(select.nav.dots);
+    thisMainPage.dom.navDisabled = document.querySelectorAll(select.nav.links);
   }
 }
 

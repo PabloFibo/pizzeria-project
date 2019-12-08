@@ -15,6 +15,7 @@ export const select = {
     homeSite: '.front-page',
     carousel: '#carousel-slides',
     naviHome: '.homeBtn',
+    navContainer: '.main-nav'
   },
   all: {
     menuProducts: '#product-list > .product',
@@ -75,7 +76,10 @@ export const select = {
   nav: {
     links: '.main-nav a',
     home: '#navi-widget a',
-    //booking: '.#navi-widget .booking-overlap',
+    dots: '.slider-dots a',
+    main: 'main-page',
+    order: 'order',
+    booking: 'booking',
   },
   slider: {
     sliderElem: '.element-slider',
@@ -98,12 +102,14 @@ export const classNames = {
   },
   nav: {
     active: 'active',
+    unactive: 'unactive',
   },
   pages: {
     active: 'active',
   },
   slider: {
     sliderActive: 'slider-active',
+    dotsActive: 'dots-active',
   }
 };
 
