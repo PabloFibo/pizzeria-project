@@ -57,8 +57,7 @@ const app = {
 
         /*if (id != select.nav.main) {
           thisApp.mainNav.classList.remove(classNames.nav.unactive);
-        }
-        if (id == select.nav.main) {
+        }else if (id == select.nav.main) {
           thisApp.mainNav.classList.add(classNames.nav.unactive);
         }*/
 
@@ -68,7 +67,23 @@ const app = {
       });
     }
 
+    /*for(let link of thisApp.navLinks){
+      link.addEventListener('click', function(event) {
+        const clickedElement = this;
+        event.preventDefault();
 
+        const id = clickedElement.getAttribute('href').replace('#', '');
+        thisApp.activatePage(id);
+        if(id == select.nav.main){
+          thisApp.mainNav.classList.add('unactive');
+        } else {
+          thisApp.mainNav.classList.remove('unactive');
+        }
+
+        window.location.hash = '#/' + id;
+
+      });
+    }*/
 
     for (let home of thisApp.homeBtn) {
       home.addEventListener('click', function(event) {

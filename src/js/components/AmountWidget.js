@@ -6,7 +6,7 @@ import BaseWidget from './BaseWidget.js';
 
 class AmountWidget extends BaseWidget {
   constructor(element) {
-    super(element, settings.amountWidget.defaultValue);
+    super(element, settings.amountWidget.defaultValue, settings.amountWidget.halfValue);
     const thisWidget = this;
 
     thisWidget.getElements(element);
@@ -19,8 +19,14 @@ class AmountWidget extends BaseWidget {
     const thisWidget = this;
 
     thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.amount.input);
+    console.log(thisWidget.dom.input);
+
+    thisWidget.dom.inputHalf = thisWidget.dom.wrapper.querySelector(select.widgets.amount.inputHalf);
+    console.log(thisWidget.dom.inputHalf);
     thisWidget.dom.linkDecrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkDecrease);
     thisWidget.dom.linkIncrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkIncrease);
+    thisWidget.dom.halfDecrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.halfDecrease);
+    thisWidget.dom.halfIncrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.halfIncrease);
   }
 
   isValid(value) {
@@ -33,6 +39,9 @@ class AmountWidget extends BaseWidget {
     const thisWidget = this;
 
     thisWidget.dom.input.value = thisWidget.value;
+    console.log(thisWidget.value);
+    thisWidget.dom.inputHalf.value = thisWidget.valuehalf;
+    console.log(thisWidget.dom.inputHalf.valuehalf);
   }
 
   initActions() {
@@ -42,6 +51,11 @@ class AmountWidget extends BaseWidget {
       //event.preventDefault();
       thisWidget.setValue(thisWidget.dom.input.value);
     });
+    /*
+    thisWidget.dom.inputHalf.addEventListener('change', function(event) {
+      event.preventDefault();
+      thisWidget.setValue(thisWidget.dom.inputHalf.value);
+    });*/
 
     thisWidget.dom.linkDecrease.addEventListener('click', function(event) {
       event.preventDefault();
@@ -52,6 +66,16 @@ class AmountWidget extends BaseWidget {
       event.preventDefault();
       thisWidget.setValue(thisWidget.value + 1);
     });
+    /*
+    thisWidget.dom.halfDecrease.addEventListener('click', function(event){
+      event.preventDefault();
+      thisWidget.setValue(thisWidget.valuehalf - 0.5);
+    });
+
+    thisWidget.dom.halfIncrease.addEventListener('click', function(event){
+      event.preventDefault();
+      thisWidget.setValue(thisWidget.valuehalf + 0.5);
+    });*/
   }
 
 }

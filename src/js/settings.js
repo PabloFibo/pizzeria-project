@@ -33,8 +33,11 @@ export const select = {
   widgets: {
     amount: {
       input: 'input.amount',
+      inputHalf: 'input.amount-half',
       linkDecrease: 'a[href="#less"]',
       linkIncrease: 'a[href="#more"]',
+      halfDecrease: 'a[href="#half-less"]',
+      halfIncrease: 'a[href="half-more"]',
     },
     datePicker: {
       wrapper: '.date-picker',
@@ -120,6 +123,7 @@ export const settings = {
   },
   amountWidget: {
     defaultValue: 1,
+    halfValue: 0.5,
     defaultMin: 1,
     defaultMax: 9,
   },
