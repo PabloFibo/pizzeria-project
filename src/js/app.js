@@ -17,6 +17,7 @@ const app = {
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
     thisApp.homeBtn = document.querySelectorAll(select.nav.home);
     thisApp.mainNav = document.querySelector(select.containerOf.navContainer);
+    thisApp.cartNav = document.querySelector(select.containerOf.cart);
 
     const idFromHash = window.location.hash.replace('#/', '');
 
@@ -41,49 +42,11 @@ const app = {
 
         /* run thisApp.activatePage with that id */
         thisApp.activatePage(id);
-        //let blockedNav = thisApp.navLinks;
-
-        /*link.addEventListener('click', function(){  //usuwa zaznaczony stolik po zmianie godz.
-          if(id != select.nav.main){
-            thisApp.mainNav.classList.remove(classNames.nav.unactive);
-          }
-        });
-
-        link.addEventListener('click', function(){  //usuwa zaznaczony stolik po zmianie godz.
-          if (id == select.nav.main){
-            thisApp.mainNav.classList.add(classNames.nav.unactive);
-          }
-        });*/
-
-        /*if (id != select.nav.main) {
-          thisApp.mainNav.classList.remove(classNames.nav.unactive);
-        }else if (id == select.nav.main) {
-          thisApp.mainNav.classList.add(classNames.nav.unactive);
-        }*/
-
 
         /* change URL hash */
         window.location.hash = '#/' + id;
       });
     }
-
-    /*for(let link of thisApp.navLinks){
-      link.addEventListener('click', function(event) {
-        const clickedElement = this;
-        event.preventDefault();
-
-        const id = clickedElement.getAttribute('href').replace('#', '');
-        thisApp.activatePage(id);
-        if(id == select.nav.main){
-          thisApp.mainNav.classList.add('unactive');
-        } else {
-          thisApp.mainNav.classList.remove('unactive');
-        }
-
-        window.location.hash = '#/' + id;
-
-      });
-    }*/
 
     for (let home of thisApp.homeBtn) {
       home.addEventListener('click', function(event) {
@@ -103,6 +66,14 @@ const app = {
 
   activatePage: function(pageId) {
     const thisApp = this;
+
+    if (pageId !== 'main-page') {
+      thisApp.mainNav.classList.remove('unactive');
+      thisApp.cartNav.classList.remove('unactive');
+    } else {
+      thisApp.mainNav.classList.add('unactive');
+      thisApp.cartNav.classList.add('unactive');
+    }
 
     /*add class 'active' to matching pages, remove from non-matching */
     for (let page of thisApp.pages) {
@@ -173,7 +144,6 @@ const app = {
     const mainWidget = document.querySelector(select.containerOf.homeSite);
 
     thisApp.mainPage = new MainPage(mainWidget);
-
   },
 
   init: function() {
@@ -190,7 +160,6 @@ const app = {
     thisApp.initBooking();
     thisApp.initPages();
   },
-
 
 };
 

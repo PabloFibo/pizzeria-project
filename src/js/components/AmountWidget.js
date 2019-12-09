@@ -51,12 +51,13 @@ class AmountWidget extends BaseWidget {
       //event.preventDefault();
       thisWidget.setValue(thisWidget.dom.input.value);
     });
-    /*
-    thisWidget.dom.inputHalf.addEventListener('change', function(event) {
-      event.preventDefault();
-      thisWidget.setValue(thisWidget.dom.inputHalf.value);
-    });*/
 
+    if (thisWidget.dom.inputHalf) {
+      thisWidget.dom.inputHalf.addEventListener('change', function(event) {
+        event.preventDefault();
+        thisWidget.setValue(thisWidget.dom.inputHalf.value);
+      });
+    }
     thisWidget.dom.linkDecrease.addEventListener('click', function(event) {
       event.preventDefault();
       thisWidget.setValue(thisWidget.value - 1);

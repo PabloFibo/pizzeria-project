@@ -38,9 +38,7 @@
   bottom: ($base-size * -8);
 
   &.unactive {
-    pointer-events: none;
-    background: transparent;
-    pointer-events: none;
+    display: none;
   }
 
   a {

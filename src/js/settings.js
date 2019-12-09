@@ -37,7 +37,7 @@ export const select = {
       linkDecrease: 'a[href="#less"]',
       linkIncrease: 'a[href="#more"]',
       halfDecrease: 'a[href="#half-less"]',
-      halfIncrease: 'a[href="half-more"]',
+      halfIncrease: 'a[href="#half-more"]',
     },
     datePicker: {
       wrapper: '.date-picker',
@@ -83,6 +83,7 @@ export const select = {
     main: 'main-page',
     order: 'order',
     booking: 'booking',
+    cartContent: '.cart-content',
   },
   slider: {
     sliderElem: '.element-slider',
