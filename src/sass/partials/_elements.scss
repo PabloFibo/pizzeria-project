@@ -17,6 +17,16 @@
   line-height: 26px;
   font-size: 10px;
 
+  &.plus{
+    margin-top: -40px;
+    margin-left: 150px;
+  }
+
+  &.minus {
+    margin-top: -40px;
+    margin-left: 150px;
+  }
+
   &--lt {
     @include btn($color-light, $color-main, $color-light);
     padding: 0;

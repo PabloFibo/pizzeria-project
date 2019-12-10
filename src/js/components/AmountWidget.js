@@ -19,10 +19,6 @@ class AmountWidget extends BaseWidget {
     const thisWidget = this;
 
     thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.amount.input);
-    console.log(thisWidget.dom.input);
-
-    thisWidget.dom.inputHalf = thisWidget.dom.wrapper.querySelector(select.widgets.amount.inputHalf);
-    console.log(thisWidget.dom.inputHalf);
     thisWidget.dom.linkDecrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkDecrease);
     thisWidget.dom.linkIncrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkIncrease);
     thisWidget.dom.halfDecrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.halfDecrease);
@@ -39,9 +35,6 @@ class AmountWidget extends BaseWidget {
     const thisWidget = this;
 
     thisWidget.dom.input.value = thisWidget.value;
-    console.log(thisWidget.value);
-    thisWidget.dom.inputHalf.value = thisWidget.valuehalf;
-    console.log(thisWidget.dom.inputHalf.valuehalf);
   }
 
   initActions() {
@@ -52,12 +45,20 @@ class AmountWidget extends BaseWidget {
       thisWidget.setValue(thisWidget.dom.input.value);
     });
 
-    if (thisWidget.dom.inputHalf) {
-      thisWidget.dom.inputHalf.addEventListener('change', function(event) {
+    if(thisWidget.dom.halfDecrease){
+      thisWidget.dom.halfDecrease.addEventListener('click', function(event){
         event.preventDefault();
-        thisWidget.setValue(thisWidget.dom.inputHalf.value);
+        thisWidget.setValue(thisWidget.value - 0.5);
       });
     }
+
+    if(thisWidget.dom.halfIncrease){
+      thisWidget.dom.halfIncrease.addEventListener('click', function(event){
+        event.preventDefault();
+        thisWidget.setValue(thisWidget.value + 0.5);
+      });
+    }
+
     thisWidget.dom.linkDecrease.addEventListener('click', function(event) {
       event.preventDefault();
       thisWidget.setValue(thisWidget.value - 1);
@@ -67,16 +68,6 @@ class AmountWidget extends BaseWidget {
       event.preventDefault();
       thisWidget.setValue(thisWidget.value + 1);
     });
-    /*
-    thisWidget.dom.halfDecrease.addEventListener('click', function(event){
-      event.preventDefault();
-      thisWidget.setValue(thisWidget.valuehalf - 0.5);
-    });
-
-    thisWidget.dom.halfIncrease.addEventListener('click', function(event){
-      event.preventDefault();
-      thisWidget.setValue(thisWidget.valuehalf + 0.5);
-    });*/
   }
 
 }

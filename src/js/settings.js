@@ -33,11 +33,10 @@ export const select = {
   widgets: {
     amount: {
       input: 'input.amount',
-      inputHalf: 'input.amount-half',
       linkDecrease: 'a[href="#less"]',
       linkIncrease: 'a[href="#more"]',
-      halfDecrease: 'a[href="#half-less"]',
-      halfIncrease: 'a[href="#half-more"]',
+      halfDecrease: '.booking-option-title a[href="#half-less"]',
+      halfIncrease: '.booking-option-title a[href="#half-more"]',
     },
     datePicker: {
       wrapper: '.date-picker',

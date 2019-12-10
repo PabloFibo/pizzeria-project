@@ -48,7 +48,7 @@ class Booking {
       eventsCurrent: settings.db.url + '/' + settings.db.event + '?' + params.eventsCurrent.join('&'),
       eventsRepeat: settings.db.url + '/' + settings.db.event + '?' + params.eventsRepeat.join('&'),
     };
-    console.log('urls', urls);
+    //console.log('urls', urls);
 
     Promise.all([
       fetch(urls.booking),

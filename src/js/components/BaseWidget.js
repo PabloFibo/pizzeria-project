@@ -34,7 +34,7 @@ class BaseWidget {
   }
 
   parseValue(value) {
-    return parseInt(value);
+    return parseFloat(value);
   }
 
   isValid(value) {
@@ -44,7 +44,7 @@ class BaseWidget {
   renderValue() {
     const thisWidget = this;
 
-    thisWidget.dom.wrapper.innerHTML = thisWidget.value;
+    thisWidget.dom.wrapper.innerHTML = thisWidget.value.toFixed(1);
   }
 
   announce() {

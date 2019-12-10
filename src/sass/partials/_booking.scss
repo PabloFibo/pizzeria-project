@@ -34,6 +34,18 @@
   }
 }
 
+.plus-half-hour{
+  font-size: 12px;
+  margin-top: -50px;
+  margin-left: 200px;
+}
+
+.minus-half-hour{
+  font-size: 12px;
+  margin-top: -20px;
+  margin-left: 200px;
+}
+
 .page__title {
   @extend .h1;
   margin: 0 0 ($base-size * 4) 0;
