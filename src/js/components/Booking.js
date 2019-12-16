@@ -18,6 +18,7 @@ class Booking {
     thisBooking.render(element);
     thisBooking.initWidgets();
     thisBooking.getData();
+    thisBooking.reservationTimeCheck();
     thisBooking.getTable();
   }
 
@@ -107,6 +108,9 @@ class Booking {
 
     const startHour = utils.hourToNumber(hour);
 
+    parseFloat(hour);
+    parseFloat(duration);
+
     for (let hourBlock = startHour; hourBlock < startHour + duration; hourBlock += 0.5) {
       if (typeof thisBooking.booked[date][hourBlock] == 'undefined') {
         thisBooking.booked[date][hourBlock] = [];
@@ -154,7 +158,7 @@ class Booking {
     for (let table of thisBooking.dom.tables) {
       table.addEventListener('click', function() {
         event.preventDefault();
-
+        console.log(table);
         for (let tableClass of thisBooking.dom.tables) {
           tableClass.classList.remove(classNames.booking.tableChoose);
         }
@@ -167,17 +171,60 @@ class Booking {
     thisBooking.hourSet = thisBooking.hourPicker.dom.input;
     thisBooking.dateSet = thisBooking.datePicker.dom.input;
 
-    thisBooking.hourSet.addEventListener('change', function(){  //usuwa zaznaczony stolik po zmianie godz.
-      for(let table of thisBooking.dom.tables){
+    thisBooking.hourSet.addEventListener('change', function() { //usuwa zaznaczony stolik po zmianie godz.
+      for (let table of thisBooking.dom.tables) {
         table.classList.remove(classNames.booking.tableChoose);
       }
     });
 
-    thisBooking.dateSet.addEventListener('change', function(){  //usuwa zaznaczony stolik po zmianie daty
-      for(let table of thisBooking.dom.tables){
+    thisBooking.dateSet.addEventListener('change', function() { //usuwa zaznaczony stolik po zmianie daty
+      for (let table of thisBooking.dom.tables) {
         table.classList.remove(classNames.booking.tableChoose);
       }
     });
+  }
+
+  reservationTimeCheck(choosedTime) {
+    const thisBooking = this;
+    const closingHour = parseInt(settings.hours.close) - choosedTime;
+    const durationTime = parseFloat(thisBooking.hoursAmount.value);
+    const startHour = parseFloat(choosedTime);
+    console.log('startHour', startHour);
+    console.log('closingHour', closingHour);
+    console.log('durationTime', durationTime);
+    let tableBooking = true;
+    let timeAmount = parseFloat(0);
+    let tableChoose = classNames.booking.tableChoose;
+    let tableBooked = classNames.booking.tableBooked;
+
+    for (let selectedHour = startHour; selectedHour < startHour + durationTime; selectedHour += 0.5) {
+      if (typeof thisBooking.booked[thisBooking.datePicker.value][selectedHour] == 'undefined' ||
+        !thisBooking.booked[thisBooking.datePicker.value][selectedHour].includes(tableChoose || tableBooked)) {
+        timeAmount += 0.5;
+      }
+      else if (thisBooking.booked[thisBooking.datePicker.value][selectedHour] != 'undefined' ||
+        thisBooking.booked[thisBooking.datePicker.value][selectedHour].includes(tableChoose || tableBooked)) {
+        tableBooking = false;
+        break;
+      }
+    }
+
+    console.log('timeAmount', timeAmount);
+    console.log('tableBooking', tableBooking);
+
+    if (durationTime >= closingHour) {
+      alert('We are close by this time');
+    }
+
+    if (tableBooking == false) {
+      alert('You can reserv this table for' + ' ' + (timeAmount) + ' ' + 'hours');
+      console.log(timeAmount);
+    }
+    /*if (typeof thisBooking.booked[thisBooking.datePicker.value][startHour] != 'undefined' ||
+     thisBooking.booked[thisBooking.datePicker.value][startHour].includes(thisBooking.tableChoose || thisBooking.tableBooked)){
+       console.log(startHour);
+     return alert('You can reserv this table for' + ' ' + timeAmount + ' ' + 'hours')
+   }*/
   }
 
 
@@ -197,14 +244,11 @@ class Booking {
     thisBooking.dom.bookingSub = element.querySelector(select.booking.bookingSubmit);
     thisBooking.dom.telephon = element.querySelector(select.booking.telephon);
     thisBooking.dom.address = element.querySelector(select.booking.address);
-
-    console.log(thisBooking.dom.bookingSub);
   }
 
-  sendBooking() {   // przesyła dane do API, blokuje rezerwacje
+  sendBooking() { // przesyła dane do API, blokuje rezerwacje
     const thisBooking = this;
     const url = settings.db.url + '/' + settings.db.booking;
-    console.log(url);
 
     const payload = {
       date: thisBooking.datePicker.value,
@@ -216,7 +260,7 @@ class Booking {
       address: thisBooking.dom.address.value,
       starters: [],
     };
-    console.log(typeof(payload.table));
+
     thisBooking.makeBooked(thisBooking.datePicker.value, thisBooking.hourPicker.value, thisBooking.hoursAmount.value, payload.table);
 
     for (let starter of thisBooking.dom.starterPick) {
@@ -258,9 +302,16 @@ class Booking {
       thisBooking.updateDOM();
     });
 
-    thisBooking.dom.bookingSub.addEventListener('click', function() {
+    thisBooking.dom.bookingSub.addEventListener('click', function(event) {
       event.preventDefault();
+      /*const reservationChoosed = thisBooking.reservationTimeCheck(thisBooking.hourPicker.value);
+      console.log(thisBooking.reservationTimeCheck(thisBooking.hourPicker.value));
+      console.log(reservationChoosed);*/
+      thisBooking.reservationTimeCheck(utils.hourToNumber(thisBooking.hourPicker.value));
+      //if(reservationChoosed) {
       thisBooking.sendBooking();
+      thisBooking.updateDOM();
+      //}
     });
 
   }

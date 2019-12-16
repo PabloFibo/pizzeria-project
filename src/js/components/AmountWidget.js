@@ -45,26 +45,26 @@ class AmountWidget extends BaseWidget {
       thisWidget.setValue(thisWidget.dom.input.value);
     });
 
-    if(thisWidget.dom.halfDecrease){
+    if(thisWidget.dom.halfDecrease){  //zmiejsza czas rezerwacji o 0.5h
       thisWidget.dom.halfDecrease.addEventListener('click', function(event){
         event.preventDefault();
         thisWidget.setValue(thisWidget.value - 0.5);
       });
     }
 
-    if(thisWidget.dom.halfIncrease){
+    if(thisWidget.dom.halfIncrease){  //zwiększa czas rezerwacji o 0.5h
       thisWidget.dom.halfIncrease.addEventListener('click', function(event){
         event.preventDefault();
         thisWidget.setValue(thisWidget.value + 0.5);
       });
     }
 
-    thisWidget.dom.linkDecrease.addEventListener('click', function(event) {
+    thisWidget.dom.linkDecrease.addEventListener('click', function(event) {  //zmniesza czas rezerwacji o 1h
       event.preventDefault();
       thisWidget.setValue(thisWidget.value - 1);
     });
 
-    thisWidget.dom.linkIncrease.addEventListener('click', function(event) {
+    thisWidget.dom.linkIncrease.addEventListener('click', function(event) {  //zwiększa czas rezerwacji o 1h
       event.preventDefault();
       thisWidget.setValue(thisWidget.value + 1);
     });
