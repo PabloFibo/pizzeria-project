@@ -184,49 +184,43 @@ class Booking {
     });
   }
 
-  reservationTimeCheck(choosedTime) {
+  reservationTimeCheck(choosedTime) {   //sprawdza poprawność rezerwacji
     const thisBooking = this;
     const closingHour = parseInt(settings.hours.close) - choosedTime;
     const durationTime = parseFloat(thisBooking.hoursAmount.value);
     const startHour = parseFloat(choosedTime);
-    console.log('startHour', startHour);
-    console.log('closingHour', closingHour);
-    console.log('durationTime', durationTime);
-    let tableBooking = true;
     let timeAmount = parseFloat(0);
-    let tableChoose = classNames.booking.tableChoose;
-    let tableBooked = classNames.booking.tableBooked;
+    let tableChoose = parseInt(thisBooking.reservation);
 
-    for (let selectedHour = startHour; selectedHour < startHour + durationTime; selectedHour += 0.5) {
-      if (typeof thisBooking.booked[thisBooking.datePicker.value][selectedHour] == 'undefined' ||
-        !thisBooking.booked[thisBooking.datePicker.value][selectedHour].includes(tableChoose || tableBooked)) {
+    const booked = thisBooking.booked;
+    const date = thisBooking.datePicker.value;
+    const max = startHour + durationTime;
+    let tableReserv = true;
+
+    for (let selectedHour = startHour; selectedHour < max; selectedHour += 0.5) {
+      if (typeof booked[date][selectedHour] !== 'undefined' && !booked[date][selectedHour].includes(tableChoose)) {
         timeAmount += 0.5;
-      }
-      else if (thisBooking.booked[thisBooking.datePicker.value][selectedHour] != 'undefined' ||
-        thisBooking.booked[thisBooking.datePicker.value][selectedHour].includes(tableChoose || tableBooked)) {
-        tableBooking = false;
+      } else {
         break;
       }
     }
 
-    console.log('timeAmount', timeAmount);
-    console.log('tableBooking', tableBooking);
-
     if (durationTime >= closingHour) {
       alert('We are close by this time');
+      tableReserv = false;
+    } else {
+      tableReserv = true;
     }
 
-    if (tableBooking == false) {
+    if (tableChoose && timeAmount != durationTime) {
       alert('You can reserv this table for' + ' ' + (timeAmount) + ' ' + 'hours');
-      console.log(timeAmount);
+      tableReserv = false;
+    } else {
+      tableReserv = true;
     }
-    /*if (typeof thisBooking.booked[thisBooking.datePicker.value][startHour] != 'undefined' ||
-     thisBooking.booked[thisBooking.datePicker.value][startHour].includes(thisBooking.tableChoose || thisBooking.tableBooked)){
-       console.log(startHour);
-     return alert('You can reserv this table for' + ' ' + timeAmount + ' ' + 'hours')
-   }*/
-  }
 
+    return tableReserv;
+  }
 
   render(element) {
     const thisBooking = this;
@@ -304,14 +298,15 @@ class Booking {
 
     thisBooking.dom.bookingSub.addEventListener('click', function(event) {
       event.preventDefault();
-      /*const reservationChoosed = thisBooking.reservationTimeCheck(thisBooking.hourPicker.value);
-      console.log(thisBooking.reservationTimeCheck(thisBooking.hourPicker.value));
-      console.log(reservationChoosed);*/
-      thisBooking.reservationTimeCheck(utils.hourToNumber(thisBooking.hourPicker.value));
-      //if(reservationChoosed) {
-      thisBooking.sendBooking();
-      thisBooking.updateDOM();
-      //}
+
+      const reservationPick = thisBooking.reservationTimeCheck(utils.hourToNumber(thisBooking.hourPicker.value));
+
+      if(reservationPick == true){  //jeśli funkcja reservationPick zwraca true wyślij rezerwacje
+        thisBooking.sendBooking();
+        thisBooking.updateDOM();
+      } else {
+        alert('Choose your reservation again');
+      }
     });
 
   }
