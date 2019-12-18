@@ -69,7 +69,6 @@ class AmountWidget extends BaseWidget {
       thisWidget.setValue(thisWidget.value + 1);
     });
   }
-
 }
 
 export default AmountWidget;
